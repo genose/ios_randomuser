@@ -1,4 +1,4 @@
-//
+ //
 //  SecondViewController.h
 //  2801_app_ios
 //
@@ -12,5 +12,7 @@
 
 @property (strong, nonatomic) UIViewController *detailController;
 @property (strong, nonatomic) id AppDelegate;
+@property (strong, nonatomic) IBOutlet UINavigationItem *listeTitle;
+
 @end
 

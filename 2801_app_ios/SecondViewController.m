@@ -17,10 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
     _AppDelegate = [[UIApplication sharedApplication] delegate];
     [_AppDelegate DatabaseRecordsDelegate];
     
+        // demonstration d'une sorte de ptoxy
+        // count du nombre delements stokés
+    [ self.listeTitle setTitle:[NSString stringWithFormat:@"Clients (%ld)",[_AppDelegate AppDelegateCountRecord]] ];
+        // creation de la vue Detail
     _detailController = [[DetailController alloc] init];
     
    /* UIBarButtonItem *doneItem =
@@ -39,10 +43,11 @@
 {
     return [_AppDelegate AppDelegateCountRecord];
 }
-
+/**************************** */
+/**************************** */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    static NSString *simpleTableIdentifier = @"DetailCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
@@ -76,18 +81,27 @@
     
     return cell;
 }
+
+    /**************************** */
+   // une fois la tablecell selectionne, on affiche le detail corresppondant avec la valeur de la base de donnees
+    /**************************** */
 - (void)tableView:(UITableView *)table didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
         // self.detailController = (self.songs)[indexPath.row];
     NSLog(@"Tableview selection ... %ld",indexPath.row);
-    [self.navigationController pushViewController:self.detailController animated:YES];
+    id DatabaseValue =[_AppDelegate AppDelegateDatabaseObjectAtIndex:indexPath.row] ;
+    [((DetailController*)self.detailController) setDetails:  DatabaseValue];
+    [self presentViewController:self.detailController animated:YES completion:^{
+    
+        NSLog(@"Done Modal");
+        
+    } ];
     
 }
- 
 
-- (IBAction)returnToChoices {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+
+    NSLog(@"prepare for segue ... { %@ }",segue);
 }
-
 @end

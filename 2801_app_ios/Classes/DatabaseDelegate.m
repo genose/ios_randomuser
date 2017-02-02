@@ -36,8 +36,22 @@ NSArray *workingTable =nil;
             // construct path within our documents directory
         NSString *applicationDocumentsDir =
         [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *storePath = [NSString stringWithFormat:@"/Volumes/ramfstmp/%@",URL_Database_local];
-            // :: [applicationDocumentsDir stringByAppendingPathComponent: URL_Database_local];
+        
+        /* ********************* */
+        /* ********************* */
+        /* ********************* */
+            // DEBUG DEBUG Purpose
+            // DEBUG DEBUG Purpose
+            // DEBUG DEBUG Purpose
+            // DEBUG DEBUG Purpose
+        NSString *storePathBase = [NSString stringWithFormat:@"/Volumes/ramfstmp"];
+            // COCOA :: kek choz comme :: stringbyappendingcompenent
+        NSString *storePath = [NSString stringWithFormat:@"%@/%@",storePathBase,URL_Database_local];
+            // :: utiliser ceci en reel :: NSString *storePath = [applicationDocumentsDir stringByAppendingPathComponent: URL_Database_local];
+        
+        /* ********************* */
+        /* ********************* */
+        /* ********************* */
         
         NSMutableString *databaseContent = [[NSMutableString alloc] initWithString:@"Some XML should later There"] ;
         
@@ -50,6 +64,9 @@ NSArray *workingTable =nil;
         
             // test la presence du fichier Database local
             // effectuer l'initialisation du fichier database Vide lors de la premiere utilisation
+        if( ![[NSFileManager defaultManager] fileExistsAtPath:storePath]){
+            [NSException raise:NSInvalidArgumentException format:@"%@ Dossier introuvable for accessing Database to : %@",[self class],storePath];
+        }
         if( ![[NSFileManager defaultManager] fileExistsAtPath:storePath] || fileSize < 100 )  {
             NSLog(@" Fetching Default DATABASE (%lld):: %@", fileSize, URL_Database_distant_init);
             NSURL *URL_init = [[NSURL alloc] initWithString: URL_Database_distant_init] ;
@@ -151,7 +168,79 @@ NSArray *workingTable =nil;
 @implementation DatabaseDelegate (XMLBackend)
 -(NSString*)commitToXML
 {
-    return [self ConvertDictionarytoXML: DatabaseRecords withStartElement:@"results"];
+    return [self ConvertDictionarytoXML: DatabaseRecords];
+}
+-(NSString*)ConvertDictionarytoXML:(NSDictionary*)dictionary
+{
+    NSMutableString *xmlDocContent =[NSMutableString stringWithString:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>"];
+        // i should not use FastEnmueration or block enumeration for this exemple
+    NSEnumerator *nodeEnumrator = [dictionary objectEnumerator];
+    NSEnumerator *keyEnumrator = [dictionary keyEnumerator];
+        // Node actuel, elmeent en cours
+    id nodeElement=nil;
+    id nodeElementKey=nil;
+    @try {
+        while( (nodeElement= [nodeEnumrator nextObject])){
+            nodeElementKey= [keyEnumrator nextObject];
+            if(nodeElement!=nil ){
+                
+                [xmlDocContent appendString: [self ConvertDictionarytoXML_nodeElement:nodeElement nodeName:nodeElementKey] ] ;
+            }
+        }
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"********************* \n ******************\nError at Line %d :: %@:%@ :: FAIL to Enumerate :: %@ :: %@ \n *************** \n%@\n****************", __LINE__, NSStringFromClass([self class]), NSStringFromSelector(_cmd), nodeElementKey, nodeElement, exception);
+    }
+    @finally {
+        
+    }
+    
+    return     xmlDocContent;
+}
+-(NSString*)ConvertDictionarytoXML_nodeElement:(NSDictionary*)dictionary nodeName:(NSString*)startElementName
+{
+    
+    NSMutableString *xmlParentNodeContent =[NSMutableString stringWithString:@""];
+    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"<%@>",startElementName]];
+    
+        // enumeration des elements
+    NSEnumerator *nodeEnumrator = [dictionary objectEnumerator];
+    NSEnumerator *keyEnumrator = [dictionary keyEnumerator];
+        // Node actuel, elmeent en cours
+    id nodeElement=nil;
+    id nodeElementKey=nil;
+    @try {
+        while( (nodeElement= [nodeEnumrator nextObject])){
+            
+            nodeElementKey= [keyEnumrator nextObject];
+            
+            NSLog(@"%@ :: Enumerate :: %@ :: %@", NSStringFromSelector(_cmd), nodeElementKey, nodeElement);
+            
+            if(nodeElement!=nil )
+                if([ nodeElement isKindOfClass:[NSDictionary class]]){
+                    [xmlParentNodeContent appendString: [self ConvertDictionarytoXML_nodeElement:nodeElement nodeName:nodeElementKey] ] ;
+                }else if([ nodeElement isKindOfClass:[NSArray class]]){
+                        // so idecide here to use fastEnumeration
+                    
+                }else if([ nodeElement isKindOfClass:[NSString class]]){
+                    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"<%@>%@</%@>", nodeElementKey, nodeElement, nodeElementKey]];
+                }else if([nodeElement length]) {
+                    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"<%@>%@</%@>", nodeElementKey, nodeElement, nodeElementKey]];
+                }else{
+                    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"<%@/>", nodeElementKey]];
+                }
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"********************* \n ******************\nError at Line %d :: %@:%@ :: FAIL to Enumerate :: %@ :: %@ \n *************** \n%@\n****************", __LINE__, NSStringFromClass([self class]), NSStringFromSelector(_cmd), nodeElementKey, nodeElement, exception);
+    }
+    @finally {
+        
+    }
+        // fermeture node parent
+    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"</%@>",startElementName]];
+    return xmlParentNodeContent;
 }
 -(NSString*)ConvertDictionarytoXML:(NSDictionary*)dictionary withStartElement:(NSString*)startele
 {
@@ -170,9 +259,9 @@ NSArray *workingTable =nil;
                     id value = [nodeValue objectAtIndex:j];
                     if([ value isKindOfClass:[NSDictionary class]])
                         {
-                            [xml appendString:[NSString stringWithFormat:@"<%@>",[arr objectAtIndex:i]]];
-                            [xml appendString:[NSString stringWithFormat:@"%@",[value objectForKey:@"text"]]];
-                            [xml appendString:[NSString stringWithFormat:@"</%@>",[arr objectAtIndex:i]]];
+                        [xml appendString:[NSString stringWithFormat:@"<%@>",[arr objectAtIndex:i]]];
+                        [xml appendString:[NSString stringWithFormat:@"%@",[value objectForKey:@"text"]]];
+                        [xml appendString:[NSString stringWithFormat:@"</%@>",[arr objectAtIndex:i]]];
                         }
                     
                     }

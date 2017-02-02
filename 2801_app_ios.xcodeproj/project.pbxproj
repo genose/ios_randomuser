@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7447FC431E3D3BB70067DBFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC421E3D3BB70067DBFC /* main.m */; };
 		7447FC461E3D3BB70067DBFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC451E3D3BB70067DBFC /* AppDelegate.m */; };
-		7447FC491E3D3BB70067DBFC /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC481E3D3BB70067DBFC /* FirstViewController.m */; };
 		7447FC4C1E3D3BB70067DBFC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC4B1E3D3BB70067DBFC /* SecondViewController.m */; };
 		7447FC4F1E3D3BB70067DBFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7447FC4D1E3D3BB70067DBFC /* Main.storyboard */; };
 		7447FC511E3D3BB70067DBFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7447FC501E3D3BB70067DBFC /* Assets.xcassets */; };
@@ -21,6 +20,7 @@
 		7498F01B1E3FAD010045013E /* NSData_NSDataExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F01A1E3FAD010045013E /* NSData_NSDataExtentions.m */; };
 		7498F01E1E3FBEA20045013E /* NSArray_NSDictionnary_extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F01C1E3FBEA20045013E /* NSArray_NSDictionnary_extention.m */; };
 		7498F0211E4002D50045013E /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F0201E4002D50045013E /* DetailController.m */; };
+		7498F0661E4377180045013E /* Engie_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7498F0651E4377180045013E /* Engie_Logo.png */; };
 		74FDCC5D1E3E385000645FBA /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FDCC5C1E3E385000645FBA /* XMLDictionary.m */; };
 /* End PBXBuildFile section */
 
@@ -46,8 +46,6 @@
 		7447FC421E3D3BB70067DBFC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7447FC441E3D3BB70067DBFC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7447FC451E3D3BB70067DBFC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7447FC471E3D3BB70067DBFC /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		7447FC481E3D3BB70067DBFC /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		7447FC4A1E3D3BB70067DBFC /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		7447FC4B1E3D3BB70067DBFC /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		7447FC4E1E3D3BB70067DBFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,6 +67,7 @@
 		7498F01D1E3FBEA20045013E /* NSArray_NSDictionnary_extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_NSDictionnary_extention.h; sourceTree = "<group>"; };
 		7498F01F1E4002D50045013E /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
 		7498F0201E4002D50045013E /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
+		7498F0651E4377180045013E /* Engie_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Engie_Logo.png; sourceTree = "<group>"; };
 		74FDCC5B1E3E385000645FBA /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		74FDCC5C1E3E385000645FBA /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		74FDCC5E1E3E397D00645FBA /* prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefix.h; sourceTree = "<group>"; };
@@ -122,17 +121,16 @@
 		7447FC401E3D3BB70067DBFC /* 2801_app_ios */ = {
 			isa = PBXGroup;
 			children = (
-				7498F01F1E4002D50045013E /* DetailController.h */,
-				7498F0201E4002D50045013E /* DetailController.m */,
+				7498F0641E4377180045013E /* ressources */,
 				7498F0181E3FAD010045013E /* objc_extentions */,
 				7498F0141E3FACF10045013E /* Classes */,
 				74FDCC591E3E322300645FBA /* XML+HTTP */,
 				7447FC441E3D3BB70067DBFC /* AppDelegate.h */,
 				7447FC451E3D3BB70067DBFC /* AppDelegate.m */,
-				7447FC471E3D3BB70067DBFC /* FirstViewController.h */,
-				7447FC481E3D3BB70067DBFC /* FirstViewController.m */,
 				7447FC4A1E3D3BB70067DBFC /* SecondViewController.h */,
 				7447FC4B1E3D3BB70067DBFC /* SecondViewController.m */,
+				7498F0201E4002D50045013E /* DetailController.m */,
+				7498F01F1E4002D50045013E /* DetailController.h */,
 				7447FC4D1E3D3BB70067DBFC /* Main.storyboard */,
 				7447FC501E3D3BB70067DBFC /* Assets.xcassets */,
 				7447FC521E3D3BB70067DBFC /* LaunchScreen.storyboard */,
@@ -187,6 +185,14 @@
 				7498F01A1E3FAD010045013E /* NSData_NSDataExtentions.m */,
 			);
 			path = objc_extentions;
+			sourceTree = "<group>";
+		};
+		7498F0641E4377180045013E /* ressources */ = {
+			isa = PBXGroup;
+			children = (
+				7498F0651E4377180045013E /* Engie_Logo.png */,
+			);
+			path = ressources;
 			sourceTree = "<group>";
 		};
 		74FDCC591E3E322300645FBA /* XML+HTTP */ = {
@@ -314,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7447FC541E3D3BB70067DBFC /* LaunchScreen.storyboard in Resources */,
+				7498F0661E4377180045013E /* Engie_Logo.png in Resources */,
 				7498F0121E3FA44D0045013E /* objc_extentions in Resources */,
 				7447FC511E3D3BB70067DBFC /* Assets.xcassets in Resources */,
 				7447FC4F1E3D3BB70067DBFC /* Main.storyboard in Resources */,
@@ -347,7 +354,6 @@
 				7498F01B1E3FAD010045013E /* NSData_NSDataExtentions.m in Sources */,
 				7447FC4C1E3D3BB70067DBFC /* SecondViewController.m in Sources */,
 				7447FC461E3D3BB70067DBFC /* AppDelegate.m in Sources */,
-				7447FC491E3D3BB70067DBFC /* FirstViewController.m in Sources */,
 				7447FC431E3D3BB70067DBFC /* main.m in Sources */,
 				7498F01E1E3FBEA20045013E /* NSArray_NSDictionnary_extention.m in Sources */,
 			);

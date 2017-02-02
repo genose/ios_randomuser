@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailController : UIViewController
-@property (nonatomic, strong) UITableViewController *DetailRecord_tableView;
+@interface DetailController : UIViewController   <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) UITableViewController *DetailRecords_tableView;
+@property (nonatomic, strong) NSDictionary *DetailRecords;
 
+- (IBAction)returnToChoices ;
+- (IBAction)validateChanges ;
+- (void) setDetails:(id)selectedDetails;
 @end
 

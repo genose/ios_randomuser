@@ -26,6 +26,9 @@
     return [DatabaseRecordsDelegate countRecord];
         // return [NSString stringWithFormat:@"%ld %@", index, @"none"];
 }
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     @try {
