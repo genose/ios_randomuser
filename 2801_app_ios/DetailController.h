@@ -11,6 +11,10 @@
 @interface DetailController : UIViewController   <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableViewController *DetailRecords_tableView;
 @property (nonatomic, strong) NSDictionary *DetailRecords;
+@property (nonatomic, strong) NSArray *cellIdentifiers;
+
+ 
+
 
 - (IBAction)returnToChoices ;
 - (IBAction)validateChanges ;

@@ -38,19 +38,12 @@ NSArray *workingTable =nil;
         [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         
         /* ********************* */
-        /* ********************* */
-        /* ********************* */
-            // DEBUG DEBUG Purpose
-            // DEBUG DEBUG Purpose
-            // DEBUG DEBUG Purpose
-            // DEBUG DEBUG Purpose
-        NSString *storePathBase = [NSString stringWithFormat:@"/Volumes/ramfstmp"];
-            // COCOA :: kek choz comme :: stringbyappendingcompenent
-        NSString *storePath = [NSString stringWithFormat:@"%@/%@",storePathBase,URL_Database_local];
-            // :: utiliser ceci en reel :: NSString *storePath = [applicationDocumentsDir stringByAppendingPathComponent: URL_Database_local];
         
-        /* ********************* */
-        /* ********************* */
+        NSString *storePathBase = [NSString stringWithFormat:URL_Database_local_prefix];
+            // COCOA :: kek choz comme :: stringbyappendingcompenent
+        NSString *storePath = [NSString stringWithFormat:@"%@/%@",storePathBase,@"commitXML.xml"];
+            // :: utiliser les valeurs dans Prefix.h
+        
         /* ********************* */
         
         NSMutableString *databaseContent = [[NSMutableString alloc] initWithString:@"Some XML should later There"] ;
@@ -64,7 +57,7 @@ NSArray *workingTable =nil;
         
             // test la presence du fichier Database local
             // effectuer l'initialisation du fichier database Vide lors de la premiere utilisation
-        if( ![[NSFileManager defaultManager] fileExistsAtPath:storePath]){
+        if( ![[NSFileManager defaultManager] fileExistsAtPath:storePathBase]){
             [NSException raise:NSInvalidArgumentException format:@"%@ Dossier introuvable for accessing Database to : %@",[self class],storePath];
         }
         if( ![[NSFileManager defaultManager] fileExistsAtPath:storePath] || fileSize < 100 )  {
@@ -103,14 +96,15 @@ NSArray *workingTable =nil;
         }
         
             // NSLog(@"string: %@", databaseXMLStringContent);
-        DatabaseRecords = [NSMutableDictionary dictionaryWithXMLString:databaseContent];
+        DatabaseRecords = (NSMutableDictionary*) [NSMutableDictionary dictionaryWithXMLString:databaseContent];
         workingTable = [NSArray arrayWithObject: DatabaseRecords];
-            //  NSLog(@"dictionary: %@", DatabaseRecords);
+        
         return self;
         }
         @catch (NSException *exceptionApp) {
-            NSLog(@"## FATAL ERROR ## NSApp FATAL NSEXCEPTION");
+            NSLog(@"## FATAL ERROR ## Datasource FATAL NSEXCEPTION");
             NSLog(@" * * * Local Exception Catched  * * * %@",exceptionApp);
+            [NSException raise:NSInvalidArgumentException format:@"%@", exceptionApp];
             return nil;
         }
         @finally {
@@ -133,7 +127,6 @@ NSArray *workingTable =nil;
     [DatabaseRecordsTable setString:[NSString stringWithString: tableName]];
     workingTable =  [DatabaseRecords objectForKey:DatabaseRecordsTable];
     allKeysIndex = [workingTable allKeys];
-    NSLog(@" settable %@",DatabaseRecordsTable);
 }
 
 #pragma mark -------------------
@@ -178,13 +171,21 @@ NSArray *workingTable =nil;
     NSEnumerator *keyEnumrator = [dictionary keyEnumerator];
         // Node actuel, elmeent en cours
     id nodeElement=nil;
-    id nodeElementKey=nil;
+    NSString* nodeElementKey=nil;
     @try {
         while( (nodeElement= [nodeEnumrator nextObject])){
-            nodeElementKey= [keyEnumrator nextObject];
-            if(nodeElement!=nil ){
-                
-                [xmlDocContent appendString: [self ConvertDictionarytoXML_nodeElement:nodeElement nodeName:nodeElementKey] ] ;
+            nodeElementKey= [NSString stringWithFormat:@"%@",[keyEnumrator nextObject] ];
+            
+            
+            if(nodeElement!=nil
+               && [nodeElementKey length]>2
+               && [nodeElementKey isKindOfClass:[NSString class]]
+               && ![[NSString stringWithFormat:@"%@",[nodeElementKey substringToIndex:2]] isEqualToString:@"__"]
+               ){
+                    //                NSLog(@"***************** dictionary %@ :: %@ ", nodeElementKey, nodeElement);
+                    //     [xmlDocContent appendString:   [self ConvertDictionarytoXML_nodeElement:nodeElement nodeName:nodeElementKey] ];
+                    //
+                [xmlDocContent appendString:  [NSString stringWithFormat:@"\n\t<%@>%@\n</%@>", nodeElementKey,   [self ConvertDictionarytoXML_nodeElement:nodeElement nodeName:nodeElementKey], nodeElementKey] ] ;
             }
         }
         
@@ -202,33 +203,42 @@ NSArray *workingTable =nil;
 {
     
     NSMutableString *xmlParentNodeContent =[NSMutableString stringWithString:@""];
-    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"<%@>",startElementName]];
-    
+        //   if([startElementName length])  [xmlParentNodeContent appendString:[NSString stringWithFormat:@"\n<%@>\t\t",startElementName]];    else startElementName = @"";
         // enumeration des elements
-    NSEnumerator *nodeEnumrator = [dictionary objectEnumerator];
-    NSEnumerator *keyEnumrator = [dictionary keyEnumerator];
+    NSEnumerator *nodeEnumrator = nil;
+    NSEnumerator *keyEnumrator = nil;
         // Node actuel, elmeent en cours
     id nodeElement=nil;
-    id nodeElementKey=nil;
+    id nodeElementKey=startElementName;
     @try {
+            //        NSLog(@"dictionary %@ ::  %@ :", startElementName, dictionary);
+        if([dictionary respondsToSelector:@selector(objectEnumerator)])
+            nodeEnumrator = [dictionary objectEnumerator];
+        if([dictionary respondsToSelector:@selector(keyEnumerator)])
+            keyEnumrator = [dictionary keyEnumerator];
+        
         while( (nodeElement= [nodeEnumrator nextObject])){
+            if(keyEnumrator)
+                nodeElementKey= [keyEnumrator nextObject];
             
-            nodeElementKey= [keyEnumrator nextObject];
-            
-            NSLog(@"%@ :: Enumerate :: %@ :: %@", NSStringFromSelector(_cmd), nodeElementKey, nodeElement);
+                // NSLog(@"%@ :: Enumerate :: %@ :: %@", NSStringFromSelector(_cmd), nodeElementKey, nodeElement);
             
             if(nodeElement!=nil )
                 if([ nodeElement isKindOfClass:[NSDictionary class]]){
-                    [xmlParentNodeContent appendString: [self ConvertDictionarytoXML_nodeElement:nodeElement nodeName:nodeElementKey] ] ;
+                        // if([nodeElementKey isEqualToString: startElementName]) nodeElementKey = nil;
+                        // NSLog(@"dictionary %@ ::  %@ : %@ ", startElementName, nodeElementKey,  dictionary);
+                        // [xmlParentNodeContent appendString: [self ConvertDictionarytoXML_nodeElement:nodeElement nodeName:nodeElementKey] ] ;
+                    
+                    [xmlParentNodeContent appendString:  [NSString stringWithFormat:@"\n\t<%@>%@\n</%@>", nodeElementKey,   [self ConvertDictionarytoXML_nodeElement:nodeElement nodeName:nodeElementKey], nodeElementKey] ] ;
                 }else if([ nodeElement isKindOfClass:[NSArray class]]){
                         // so idecide here to use fastEnumeration
                     
                 }else if([ nodeElement isKindOfClass:[NSString class]]){
-                    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"<%@>%@</%@>", nodeElementKey, nodeElement, nodeElementKey]];
+                    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"\n\t\t\t<%@>%@</%@>", nodeElementKey, nodeElement, nodeElementKey]];
                 }else if([nodeElement length]) {
-                    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"<%@>%@</%@>", nodeElementKey, nodeElement, nodeElementKey]];
+                    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"\n\t\t\t\t\t<%@>%@</%@>", nodeElementKey, nodeElement, nodeElementKey]];
                 }else{
-                    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"<%@/>", nodeElementKey]];
+                    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"\n\t\t\t<%@/>", nodeElementKey]];
                 }
         }
     }
@@ -239,58 +249,7 @@ NSArray *workingTable =nil;
         
     }
         // fermeture node parent
-    [xmlParentNodeContent appendString:[NSString stringWithFormat:@"</%@>",startElementName]];
+        //   if([startElementName length]) [xmlParentNodeContent appendString:[NSString stringWithFormat:@"\n\t\t</%@>",startElementName]];
     return xmlParentNodeContent;
 }
--(NSString*)ConvertDictionarytoXML:(NSDictionary*)dictionary withStartElement:(NSString*)startele
-{
-    NSMutableString *xml = [[NSMutableString alloc] initWithString:@""];
-    NSArray *arr = [dictionary allKeys];
-    [xml appendString:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>"];
-    [xml appendString:[NSString stringWithFormat:@"<%@>",startele]];
-    for(int i=0;i<[arr count];i++)
-        {
-        id nodeValue = [dictionary objectForKey:[arr objectAtIndex:i]];
-        if([nodeValue isKindOfClass:[NSArray class]] )
-            {
-            if([nodeValue count]>0){
-                for(int j=0;j<[nodeValue count];j++)
-                    {
-                    id value = [nodeValue objectAtIndex:j];
-                    if([ value isKindOfClass:[NSDictionary class]])
-                        {
-                        [xml appendString:[NSString stringWithFormat:@"<%@>",[arr objectAtIndex:i]]];
-                        [xml appendString:[NSString stringWithFormat:@"%@",[value objectForKey:@"text"]]];
-                        [xml appendString:[NSString stringWithFormat:@"</%@>",[arr objectAtIndex:i]]];
-                        }
-                    
-                    }
-            }
-            }
-        else if([nodeValue isKindOfClass:[NSDictionary class]])
-            {
-            [xml appendString:[NSString stringWithFormat:@"<%@>",[arr objectAtIndex:i]]];
-            if([[nodeValue objectForKey:@"Id"] isKindOfClass:[NSString class]])
-                [xml appendString:[NSString stringWithFormat:@"%@",[nodeValue objectForKey:@"Id"]]];
-            else
-                [xml appendString:[NSString stringWithFormat:@"%@",[[nodeValue objectForKey:@"Id"] objectForKey:@"text"]]];
-            [xml appendString:[NSString stringWithFormat:@"</%@>",[arr objectAtIndex:i]]];
-            }
-        
-        else
-            {
-            if([nodeValue length]>0){
-                [xml appendString:[NSString stringWithFormat:@"<%@>",[arr objectAtIndex:i]]];
-                [xml appendString:[NSString stringWithFormat:@"%@",[dictionary objectForKey:[arr objectAtIndex:i]]]];
-                [xml appendString:[NSString stringWithFormat:@"</%@>",[arr objectAtIndex:i]]];
-            }
-            }
-        }
-    
-    [xml appendString:[NSString stringWithFormat:@"</%@>",startele]];
-    NSString *finalxml=[xml stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
-        //  NSLog(@"%@",xml);
-    return finalxml;
-}
-
 @end

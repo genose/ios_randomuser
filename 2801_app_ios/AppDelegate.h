@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Classes/DatabaseDelegate.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 {
 }
 

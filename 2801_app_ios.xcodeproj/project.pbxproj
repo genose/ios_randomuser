@@ -11,16 +11,15 @@
 		7447FC461E3D3BB70067DBFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC451E3D3BB70067DBFC /* AppDelegate.m */; };
 		7447FC4C1E3D3BB70067DBFC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC4B1E3D3BB70067DBFC /* SecondViewController.m */; };
 		7447FC4F1E3D3BB70067DBFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7447FC4D1E3D3BB70067DBFC /* Main.storyboard */; };
-		7447FC511E3D3BB70067DBFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7447FC501E3D3BB70067DBFC /* Assets.xcassets */; };
 		7447FC541E3D3BB70067DBFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7447FC521E3D3BB70067DBFC /* LaunchScreen.storyboard */; };
 		7447FC5F1E3D3BB70067DBFC /* _801_app_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC5E1E3D3BB70067DBFC /* _801_app_iosTests.m */; };
 		7447FC6A1E3D3BB70067DBFC /* _801_app_iosUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC691E3D3BB70067DBFC /* _801_app_iosUITests.m */; };
-		7498F0121E3FA44D0045013E /* objc_extentions in Resources */ = {isa = PBXBuildFile; fileRef = 7498F0111E3FA44D0045013E /* objc_extentions */; };
 		7498F0171E3FACF10045013E /* DatabaseDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F0161E3FACF10045013E /* DatabaseDelegate.m */; };
 		7498F01B1E3FAD010045013E /* NSData_NSDataExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F01A1E3FAD010045013E /* NSData_NSDataExtentions.m */; };
 		7498F01E1E3FBEA20045013E /* NSArray_NSDictionnary_extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F01C1E3FBEA20045013E /* NSArray_NSDictionnary_extention.m */; };
 		7498F0211E4002D50045013E /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F0201E4002D50045013E /* DetailController.m */; };
 		7498F0661E4377180045013E /* Engie_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7498F0651E4377180045013E /* Engie_Logo.png */; };
+		7498F0691E43B0620045013E /* UIAlertController+UIAlert_extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F0681E43B0620045013E /* UIAlertController+UIAlert_extension.m */; };
 		74FDCC5D1E3E385000645FBA /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FDCC5C1E3E385000645FBA /* XMLDictionary.m */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +57,6 @@
 		7447FC651E3D3BB70067DBFC /* 2801_app_iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 2801_app_iosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7447FC691E3D3BB70067DBFC /* _801_app_iosUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _801_app_iosUITests.m; sourceTree = "<group>"; };
 		7447FC6B1E3D3BB70067DBFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7498F0111E3FA44D0045013E /* objc_extentions */ = {isa = PBXFileReference; lastKnownFileType = folder; name = objc_extentions; path = /Users/xenon/Documents/xcode/2801_app_ios/2801_app_ios/2801_app_ios/objc_extentions; sourceTree = "<absolute>"; };
 		7498F0151E3FACF10045013E /* DatabaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseDelegate.h; sourceTree = "<group>"; };
 		7498F0161E3FACF10045013E /* DatabaseDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseDelegate.m; sourceTree = "<group>"; };
 		7498F0191E3FAD010045013E /* NSData_NSDataExtentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSData_NSDataExtentions.h; sourceTree = "<group>"; };
@@ -68,6 +66,8 @@
 		7498F01F1E4002D50045013E /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
 		7498F0201E4002D50045013E /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		7498F0651E4377180045013E /* Engie_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Engie_Logo.png; sourceTree = "<group>"; };
+		7498F0671E43B0620045013E /* UIAlertController+UIAlert_extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+UIAlert_extension.h"; sourceTree = "<group>"; };
+		7498F0681E43B0620045013E /* UIAlertController+UIAlert_extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+UIAlert_extension.m"; sourceTree = "<group>"; };
 		74FDCC5B1E3E385000645FBA /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		74FDCC5C1E3E385000645FBA /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		74FDCC5E1E3E397D00645FBA /* prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefix.h; sourceTree = "<group>"; };
@@ -183,6 +183,8 @@
 				7498F01D1E3FBEA20045013E /* NSArray_NSDictionnary_extention.h */,
 				7498F0191E3FAD010045013E /* NSData_NSDataExtentions.h */,
 				7498F01A1E3FAD010045013E /* NSData_NSDataExtentions.m */,
+				7498F0671E43B0620045013E /* UIAlertController+UIAlert_extension.h */,
+				7498F0681E43B0620045013E /* UIAlertController+UIAlert_extension.m */,
 			);
 			path = objc_extentions;
 			sourceTree = "<group>";
@@ -321,8 +323,6 @@
 			files = (
 				7447FC541E3D3BB70067DBFC /* LaunchScreen.storyboard in Resources */,
 				7498F0661E4377180045013E /* Engie_Logo.png in Resources */,
-				7498F0121E3FA44D0045013E /* objc_extentions in Resources */,
-				7447FC511E3D3BB70067DBFC /* Assets.xcassets in Resources */,
 				7447FC4F1E3D3BB70067DBFC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7498F0691E43B0620045013E /* UIAlertController+UIAlert_extension.m in Sources */,
 				74FDCC5D1E3E385000645FBA /* XMLDictionary.m in Sources */,
 				7498F0171E3FACF10045013E /* DatabaseDelegate.m in Sources */,
 				7498F0211E4002D50045013E /* DetailController.m in Sources */,

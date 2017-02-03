@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UIViewController *detailController;
 @property (strong, nonatomic) id AppDelegate;
 @property (strong, nonatomic) IBOutlet UINavigationItem *listeTitle;
+@property int selectedRow;
 
 @end
 
