@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7446D3E11E48E0B800B5395F /* DetailViewSwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7446D3E01E48E0B800B5395F /* DetailViewSwipeView.m */; };
 		7447FC431E3D3BB70067DBFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC421E3D3BB70067DBFC /* main.m */; };
 		7447FC461E3D3BB70067DBFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC451E3D3BB70067DBFC /* AppDelegate.m */; };
 		7447FC4C1E3D3BB70067DBFC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC4B1E3D3BB70067DBFC /* SecondViewController.m */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7446D3E01E48E0B800B5395F /* DetailViewSwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewSwipeView.m; sourceTree = "<group>"; };
+		7446D3E21E48E0FD00B5395F /* DetailViewSwipeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewSwipeView.h; sourceTree = "<group>"; };
 		7447FC3E1E3D3BB70067DBFC /* 2801_app_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2801_app_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7447FC421E3D3BB70067DBFC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7447FC441E3D3BB70067DBFC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		7498F0651E4377180045013E /* Engie_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Engie_Logo.png; sourceTree = "<group>"; };
 		7498F0671E43B0620045013E /* UIAlertController+UIAlert_extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+UIAlert_extension.h"; sourceTree = "<group>"; };
 		7498F0681E43B0620045013E /* UIAlertController+UIAlert_extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+UIAlert_extension.m"; sourceTree = "<group>"; };
+		74F5D7AE1E47D90C00376D59 /* UIViewDetail_protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewDetail_protocol.h; path = objc_protocols/UIViewDetail_protocol.h; sourceTree = "<group>"; };
 		74FDCC5B1E3E385000645FBA /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		74FDCC5C1E3E385000645FBA /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		74FDCC5E1E3E397D00645FBA /* prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefix.h; sourceTree = "<group>"; };
@@ -137,6 +141,9 @@
 				7447FC551E3D3BB70067DBFC /* Info.plist */,
 				7447FC411E3D3BB70067DBFC /* Supporting Files */,
 				74FDCC5E1E3E397D00645FBA /* prefix.h */,
+				74F5D7AE1E47D90C00376D59 /* UIViewDetail_protocol.h */,
+				7446D3E01E48E0B800B5395F /* DetailViewSwipeView.m */,
+				7446D3E21E48E0FD00B5395F /* DetailViewSwipeView.h */,
 			);
 			path = 2801_app_ios;
 			sourceTree = "<group>";
@@ -355,6 +362,7 @@
 				7498F01B1E3FAD010045013E /* NSData_NSDataExtentions.m in Sources */,
 				7447FC4C1E3D3BB70067DBFC /* SecondViewController.m in Sources */,
 				7447FC461E3D3BB70067DBFC /* AppDelegate.m in Sources */,
+				7446D3E11E48E0B800B5395F /* DetailViewSwipeView.m in Sources */,
 				7447FC431E3D3BB70067DBFC /* main.m in Sources */,
 				7498F01E1E3FBEA20045013E /* NSArray_NSDictionnary_extention.m in Sources */,
 			);

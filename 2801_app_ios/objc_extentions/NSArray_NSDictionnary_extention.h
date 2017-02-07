@@ -23,6 +23,8 @@
 @end
 
 @interface NSArray (NSArray_extention)
+-(NSArray*) allKeysInner;
+-(id)objectForKey:(NSString*)index;
 -(id)objectAtIndexSubscript:(int)index;
 - (id)objectAtIndexedSubscript:(int)idx;
 - (void)setObject:(id)obj atIndexedSubscript:(int)idx;

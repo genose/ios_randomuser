@@ -16,7 +16,9 @@
 @synthesize DatabaseRecords;
 @synthesize DatabaseRecordsTable;
 @synthesize allKeysIndex;
-NSArray *workingTable =nil;
+@synthesize sourceType;
+
+NSMutableArray *workingTable =nil;
 
 #pragma mark -------------------
 #pragma mark ---- INIT des elements de la base de donnees
@@ -34,14 +36,13 @@ NSArray *workingTable =nil;
         allKeysIndex = [NSArray array];
         
             // construct path within our documents directory
-        NSString *applicationDocumentsDir =
-        [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+            //  NSString *applicationDocumentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         
         /* ********************* */
-        
+        self.sourceType = DatabaseDelegateSourceTypeXML;
         NSString *storePathBase = [NSString stringWithFormat:URL_Database_local_prefix];
             // COCOA :: kek choz comme :: stringbyappendingcompenent
-        NSString *storePath = [NSString stringWithFormat:@"%@/%@",storePathBase,@"commitXML.xml"];
+        NSString *storePath = [NSString stringWithFormat:@"%@/%@",storePathBase,URL_Database_local];
             // :: utiliser les valeurs dans Prefix.h
         
         /* ********************* */
@@ -147,7 +148,69 @@ NSArray *workingTable =nil;
 {
     return (NSString*) [(NSDictionary*)[self DatabaseObjectAtIndex:index] objectForKey:IndexColumnKey];
 }
+-(void)DatabaseCommitObjectAtIndex:(long)index :(id)dataCommit
+{
+    
+    @try {
+        if(DatabaseRecordsTable !=nil) {
+            allKeysIndex = [workingTable allKeys];
+            
+            if(index !=(-1)){
+                [ workingTable replaceObjectAtIndex:index withObject: dataCommit];
+            }else{
+                [ workingTable addObject:dataCommit];
+            }
+            
+            [DatabaseRecords setObject:workingTable forKey: DatabaseRecordsTable];
+                // regen les cles
+            allKeysIndex = [workingTable allKeys];
+            if([self.sourceType isEqualToString: DatabaseDelegateSourceTypeXML]){
+                [self commitToDiskWithXML];
+            }else{
+                    // :: Source non implementee
+                [NSException raise:NSInvalidArgumentException format:@"Can t commit changes to Database ... Wrong Storage type Specified !!"];
+            }
+        }else{
+                // :: Aucune table selectionnee
+            [NSException raise:NSInvalidArgumentException format:@"Can t commit Database Changes ... TableName Not Specified !!"];
+        }
+    }
+    @catch (NSException *exception) {
+        NSString *exMessage = [NSString stringWithFormat:@" ************ Error while Commit Entry %d \n ********* %@ \n ********* ", index, exception];
+        NSLog(@"%@",exMessage);
+        [NSException raise:NSInvalidArgumentException format:@"%@", exMessage];
+    }
+}
+#pragma mark -------------------
+#pragma mark ---- Delete
+#pragma mark -------------------
 
+-(void)DatabaseDeleteObjectAtIndex:(int)index
+{
+    @try {
+        NSMutableArray *replaceTable = [NSMutableArray arrayWithArray:workingTable];
+        [replaceTable removeObjectAtIndex:(int)[[allKeysIndex objectAtIndex: index] longValue] ];
+        workingTable = [replaceTable copy];
+        allKeysIndex = [workingTable allKeys];
+        if(DatabaseRecordsTable !=nil){
+            [DatabaseRecords setObject:workingTable forKey: DatabaseRecordsTable];
+            if([self.sourceType isEqualToString: DatabaseDelegateSourceTypeXML]){
+                [self commitToDiskWithXML];
+            }else{
+                    // :: Source non implementee
+                [NSException raise:NSInvalidArgumentException format:@"Can t commit changes to Database ... Wrong Storage type Specified !!"];
+            }
+        }else{
+                // :: Aucune table selectionnee
+            [NSException raise:NSInvalidArgumentException format:@"Can t save Database Changes ... TableName Not Specified !!"];
+        }
+    }
+    @catch (NSException *exception) {
+        NSString *exMessage = [NSString stringWithFormat:@" ************ Error while removing Entry %d \n ********* %@ \n ********* ", index, exception];
+        NSLog(@"%@",exMessage);
+        [NSException raise:NSInvalidArgumentException format:@"%@", exMessage];
+    }
+}
 #pragma mark -------------------
 #pragma mark ---- Accesseur Tranversal, Mutable, Countable aux elements
 #pragma mark -------------------
@@ -159,10 +222,29 @@ NSArray *workingTable =nil;
 }
 @end
 @implementation DatabaseDelegate (XMLBackend)
+#pragma mark  ********* Dict to XML :: Commit Disk
 -(NSString*)commitToXML
 {
     return [self ConvertDictionarytoXML: DatabaseRecords];
 }
+-(void)commitToDiskWithXML
+{
+    NSString *storePathBase = [NSString stringWithFormat:URL_Database_local_prefix];
+    NSString *storePath = [NSString stringWithFormat:@"%@/%@",storePathBase,URL_Database_local];
+    @try{
+        NSData* commitedXML = [  [self commitToXML] dataUsingEncoding:NSUTF8StringEncoding];
+        
+        
+        [commitedXML writeToFile:storePath  atomically:YES];
+    }
+    @catch (NSException *exception) {
+        NSString *exMessage = [NSString stringWithFormat: @"********************* \n ******************\nError at Line %d :: %@:%@ :: FAIL to Commi on disk :: %@ :: %@ \n *************** \n%@\n****************", __LINE__, NSStringFromClass([self class]), NSStringFromSelector(_cmd), exception];
+        NSLog(@"%@,",exMessage);
+        [NSException raise:NSInvalidArgumentException format:@"%@",exMessage];
+    }
+    NSLog(@"Saved (%d) to %@",(unsigned)[allKeysIndex count], storePath);
+}
+#pragma mark  ********* Dict to XML :: ConvertDictionarytoXML
 -(NSString*)ConvertDictionarytoXML:(NSDictionary*)dictionary
 {
     NSMutableString *xmlDocContent =[NSMutableString stringWithString:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>"];
@@ -172,7 +254,9 @@ NSArray *workingTable =nil;
         // Node actuel, elmeent en cours
     id nodeElement=nil;
     NSString* nodeElementKey=nil;
+    
     @try {
+            // enumeration des elements
         while( (nodeElement= [nodeEnumrator nextObject])){
             nodeElementKey= [NSString stringWithFormat:@"%@",[keyEnumrator nextObject] ];
             
@@ -182,16 +266,17 @@ NSArray *workingTable =nil;
                && [nodeElementKey isKindOfClass:[NSString class]]
                && ![[NSString stringWithFormat:@"%@",[nodeElementKey substringToIndex:2]] isEqualToString:@"__"]
                ){
-                    //                NSLog(@"***************** dictionary %@ :: %@ ", nodeElementKey, nodeElement);
-                    //     [xmlDocContent appendString:   [self ConvertDictionarytoXML_nodeElement:nodeElement nodeName:nodeElementKey] ];
-                    //
+                
                 [xmlDocContent appendString:  [NSString stringWithFormat:@"\n\t<%@>%@\n</%@>", nodeElementKey,   [self ConvertDictionarytoXML_nodeElement:nodeElement nodeName:nodeElementKey], nodeElementKey] ] ;
             }
         }
         
     }
     @catch (NSException *exception) {
-        NSLog(@"********************* \n ******************\nError at Line %d :: %@:%@ :: FAIL to Enumerate :: %@ :: %@ \n *************** \n%@\n****************", __LINE__, NSStringFromClass([self class]), NSStringFromSelector(_cmd), nodeElementKey, nodeElement, exception);
+            // gestion des exceptions
+        NSString *exMessage = [NSString stringWithFormat: @"********************* \n ******************\nError at Line %d :: %@:%@ :: FAIL to Enumerate :: %@ :: %@ \n *************** \n%@\n****************", __LINE__, NSStringFromClass([self class]), NSStringFromSelector(_cmd), nodeElementKey, nodeElement, exception];
+        NSLog(@"%@,",exMessage);
+        [NSException raise:NSInvalidArgumentException format:@"%@",exMessage];
     }
     @finally {
         

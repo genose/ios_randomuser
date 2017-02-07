@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>
+#import "objc_protocols/UIViewDetail_protocol.h"
+
+
+@interface SecondViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource, UIViewDetail_protocol>
 
 @property (strong, nonatomic) UIViewController *detailController;
 @property (strong, nonatomic) id AppDelegate;
 @property (strong, nonatomic) IBOutlet UINavigationItem *listeTitle;
 @property int selectedRow;
+@property (strong, nonatomic) IBOutlet UITableView *tabelView;
+
+-(void)tableViewTitle;
+-(void)reloadData;
+-(IBAction)addEntity:(id)sender;
 
 @end
 

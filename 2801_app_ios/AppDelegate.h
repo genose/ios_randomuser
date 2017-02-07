@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Classes/DatabaseDelegate.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate, NSExtensionRequestHandling>
 {
 }
 
@@ -18,5 +18,7 @@
 
 -(id)AppDelegateDatabaseObjectAtIndex:(long)index;
 -(long)AppDelegateCountRecord;
+-(void)AppDelegateDatabaseDeleteObjectAtIndex:(long)index;
+-(void)AppDelegateDatabaseCommitObjectAtIndex:(long)index :(id)dataCommit;
 @end
 

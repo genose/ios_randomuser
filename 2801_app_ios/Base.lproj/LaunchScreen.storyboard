@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,31 +18,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" image="Engie_Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="sjY-C7-L07">
-                                <rect key="frame" x="180" y="222" width="240" height="128"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LkQ-Uq-VAD">
+                                <rect key="frame" x="238" y="372" width="151" height="21"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IKX-nn-9NE">
+                                        <rect key="frame" x="0.0" y="0.0" width="151" height="21"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" text="Veuillez Patienter ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Of-uZ-Lix">
+                                                <rect key="frame" x="0.0" y="0.0" width="151" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="0Of-uZ-Lix" secondAttribute="trailing" id="01h-gy-9yt"/>
+                                            <constraint firstItem="0Of-uZ-Lix" firstAttribute="leading" secondItem="IKX-nn-9NE" secondAttribute="leadingMargin" id="1Wf-4d-s4w"/>
+                                            <constraint firstItem="0Of-uZ-Lix" firstAttribute="leading" secondItem="IKX-nn-9NE" secondAttribute="leading" id="1xe-s4-Sxk"/>
+                                            <constraint firstItem="0Of-uZ-Lix" firstAttribute="trailing" secondItem="IKX-nn-9NE" secondAttribute="trailingMargin" id="43S-ut-2Kf"/>
+                                            <constraint firstItem="0Of-uZ-Lix" firstAttribute="centerX" secondItem="IKX-nn-9NE" secondAttribute="centerX" id="60s-i2-FgN"/>
+                                            <constraint firstItem="0Of-uZ-Lix" firstAttribute="leading" secondItem="IKX-nn-9NE" secondAttribute="leading" id="66D-Ba-IuD"/>
+                                            <constraint firstAttribute="trailing" secondItem="0Of-uZ-Lix" secondAttribute="trailing" id="MTR-NG-y6h"/>
+                                            <constraint firstItem="0Of-uZ-Lix" firstAttribute="leading" secondItem="IKX-nn-9NE" secondAttribute="leading" id="YzS-gV-DoM"/>
+                                            <constraint firstItem="0Of-uZ-Lix" firstAttribute="leading" secondItem="IKX-nn-9NE" secondAttribute="leading" id="cll-wK-YHf"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uuS-Kc-4b8">
+                                <rect key="frame" x="210" y="372" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" image="Engie_Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="sjY-C7-L07">
+                                <rect key="frame" x="180" y="236" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="LVj-A9-AH5"/>
+                                    <constraint firstAttribute="width" constant="240" id="BiZ-mr-MSy"/>
                                 </constraints>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uuS-Kc-4b8">
-                                <rect key="frame" x="210" y="358" width="20" height="20"/>
-                            </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" text="Veuillez Patienter ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Of-uZ-Lix">
-                                <rect key="frame" x="238" y="358" width="151" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="0Of-uZ-Lix" secondAttribute="bottom" constant="221" id="Owv-gi-d60"/>
-                            <constraint firstItem="0Of-uZ-Lix" firstAttribute="leading" secondItem="uuS-Kc-4b8" secondAttribute="trailing" constant="8" symbolic="YES" id="Qma-x5-IuG"/>
-                            <constraint firstItem="uuS-Kc-4b8" firstAttribute="top" secondItem="sjY-C7-L07" secondAttribute="bottom" constant="8" symbolic="YES" id="b4q-rC-Cq2"/>
-                            <constraint firstItem="sjY-C7-L07" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="202" id="jdM-B6-tWu"/>
-                            <constraint firstItem="uuS-Kc-4b8" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="210" id="kXu-ub-MgV"/>
-                            <constraint firstItem="0Of-uZ-Lix" firstAttribute="top" secondItem="uuS-Kc-4b8" secondAttribute="top" id="lwi-YO-hC8"/>
-                            <constraint firstItem="sjY-C7-L07" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="q6K-a1-Kxu"/>
+                            <constraint firstItem="sjY-C7-L07" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="216" id="H83-Pp-JVt"/>
+                            <constraint firstItem="uuS-Kc-4b8" firstAttribute="top" secondItem="LkQ-Uq-VAD" secondAttribute="top" id="IxY-vj-Iea"/>
+                            <constraint firstItem="LkQ-Uq-VAD" firstAttribute="top" secondItem="sjY-C7-L07" secondAttribute="bottom" constant="8" symbolic="YES" id="O0F-Yb-iOe"/>
+                            <constraint firstItem="sjY-C7-L07" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="OHP-Xw-UMS"/>
+                            <constraint firstItem="uuS-Kc-4b8" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="210" id="k0y-n4-Dsf"/>
+                            <constraint firstItem="sjY-C7-L07" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="wcD-0p-MfO"/>
+                            <constraint firstItem="LkQ-Uq-VAD" firstAttribute="leading" secondItem="uuS-Kc-4b8" secondAttribute="trailing" constant="8" symbolic="YES" id="zUE-I0-Iuc"/>
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>

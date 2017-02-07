@@ -8,7 +8,6 @@
 
 #import "prefix.h"
 
-
 #import "AppDelegate.h"
 #import "objc_extentions/UIAlertController+UIAlert_extension.h"
 
@@ -20,6 +19,10 @@ void uncatched (void){
 
 @synthesize DatabaseRecordsDelegate;
 
+-(void)AppDelegateDatabaseDeleteObjectAtIndex:(long)index
+{
+    [DatabaseRecordsDelegate DatabaseDeleteObjectAtIndex: index];
+}
 -(id)AppDelegateDatabaseObjectAtIndex:(long)index
 {
     return [DatabaseRecordsDelegate DatabaseObjectAtIndex: index];
@@ -31,6 +34,13 @@ void uncatched (void){
     
 }
 
+
+-(void)AppDelegateDatabaseCommitObjectAtIndex:(long)index :(id)dataCommit
+{
+    [DatabaseRecordsDelegate DatabaseCommitObjectAtIndex: index :dataCommit];
+}
+
+#pragma mark ********** Application
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     @try {
@@ -46,7 +56,7 @@ void uncatched (void){
         NSData* commitedXML = [  [DatabaseRecordsDelegate commitToXML] dataUsingEncoding:NSUTF8StringEncoding];
         
         NSString *storePathBase = [NSString stringWithFormat:URL_Database_local_prefix];
-        NSString *storePath = [NSString stringWithFormat:@"%@/%@",storePathBase,@"commitXML.xml"];
+        NSString *storePath = [NSString stringWithFormat:@"%@/%@",storePathBase,URL_Database_local];
         [commitedXML writeToFile:storePath  atomically:YES];
         
         
@@ -116,4 +126,13 @@ void uncatched (void){
     
 }
 
+
+#pragma mark *********** AppDelegate (NSException)
+- (void)beginRequestWithExtensionContext:(NSExtensionContext *)context
+{
+    
+}
+
+
 @end
+
