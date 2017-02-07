@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "objc_protocols/UIViewDetail_protocol.h"
-
+#import "prefix.h"
 
 @interface SecondViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource, UIViewDetail_protocol>
 

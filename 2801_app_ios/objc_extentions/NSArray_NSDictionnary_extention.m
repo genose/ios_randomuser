@@ -40,6 +40,11 @@ id staticcopyArray = nil;
                 [foundElement addObject: [_element objectAtIndex:1]];
                 
             }
+        }else if ([_element isKindOfClass:[NSString class]]){
+            if(   [_element length]>1  ){
+                [foundElement addObject: _element];
+                
+            }
         }
         
     }

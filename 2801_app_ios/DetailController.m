@@ -8,7 +8,8 @@
 
 #import "DetailController.h"
 #import "SecondViewController.h"
-#import "AppDelegate.h"
+
+#import "prefix.h"
 
 @implementation DetailController
 
@@ -27,26 +28,26 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    
-    
-        // [[self view] setBackgroundColor:[UIColor colorWithHue:0.2 saturation:0.6 brightness:0.4 alpha:0.8]];
-    self.cellIdentifiers = [NSDictionary dictionaryWithObjectsAndKeys: @"ignore",@"noproperty",
-                            [NSArray arrayWithObjects:@"DetailCellLastName",@"name", @"last" ,nil],@"DetailCellLastName",
-                            [NSArray arrayWithObjects:@"DetailCellFirstName",@"name", @"first" ,nil],@"DetailCellFirstName",
-                            
-                            [NSArray arrayWithObjects:@"DetailCellMail",@"-", @"email" ,nil],@"DetailCellMail",
-                            [NSArray arrayWithObjects:@"DetailCellPhone",@"-", @"phone" ,nil],@"DetailCellPhone",
-                            [NSArray arrayWithObjects:@"DetailCellButton",@"-", @"-", [NSArray arrayWithObjects:@"add",@"delete", nil] ,nil], @"DetailCellButton"
+        // control la generation des TableViewCell prototypes et leurs valuers en Database
+    self.cellIdentifiers = [NSArray arrayWithObjects:
+                            [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailCellLastName",@"name", @"last" ,nil],@"DetailCellLastName" ,nil],
+                            [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailCellFirstName",@"name", @"first" ,nil],@"DetailCellFirstName" ,nil],
+                             [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailCellPhone",@"-", @"phone" ,nil],@"DetailCellPhone" ,nil],
+                            [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailCellMail",@"-", @"email" ,nil],@"DetailCellMail" ,nil],
+                           @"ignore",@"noproperty",
+                            @"ignore",@"noproperty",
+                            [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailCellButton",@"-", @"-", [NSArray arrayWithObjects:@"add",@"delete", nil] ,nil], @"DetailCellButton" ,nil]
                             ,nil];
-    self.DetailRecords = [NSDictionary dictionary];
+    self.DetailRecords = [NSMutableDictionary dictionary];
     _AppDelegate = [[UIApplication sharedApplication] delegate];
         // mutable COPY
     self.DetailRecords = [NSMutableDictionary dictionaryWithDictionary: [self.delegate getDetails]];
     
+ 
 }
 
 - (NSInteger)tableView:(UITableView *)tv numberOfRowsInSection:(NSInteger)section {
-    return 21;
+    return 21; // :: pour charger plus de ligne que prevu par le storyboard
 }
 
 - (UITableViewCell *)tableView:(UITableView *)table cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -56,9 +57,10 @@
     
     int nbCellBase = [self tableView:table numberOfRowsInSection:0];
     UITableViewCell *cell = nil;
+    id allkeysFound = [self.cellIdentifiers allKeysInner];
     
-    
-    id identifiersDef = (indexPath.row < [[self.cellIdentifiers allKeys]count])?[self.cellIdentifiers objectForKey: [ [self.cellIdentifiers allKeys] objectAtIndex: indexPath.row] ] :  @"" ;
+    id identifiersDef = (indexPath.row < [allkeysFound count]) ? [self.cellIdentifiers objectForKey :
+                                                                                 [ allkeysFound objectAtIndex: indexPath.row] ] :  @"" ;
     id identifiersDefValue =nil;
     
     if([ identifiersDef  respondsToSelector:@selector(objectAtIndex: )]  ){
@@ -71,30 +73,34 @@
         
         if([identifiersDef objectAtIndex: 1] != nil && [[identifiersDef objectAtIndex: 1] length]>2)
             identifiersDefValue = [self.DetailRecords objectForKey: [identifiersDef objectAtIndex: 1]];
-        
+        else if ([identifiersDef objectAtIndex: 1] != nil && [[identifiersDef objectAtIndex: 1] length]<=2)
+            identifiersDefValue = self.DetailRecords ;
         /* *********************************** */
             // Recherche de la valeur texte
         id textValue = [identifiersDefValue  objectForKey: [identifiersDef objectAtIndex: 2] ];
-        if( [[textValue class] isKindOfClass:[NSDictionary class]]){
+        if( [ textValue   isKindOfClass:[NSDictionary class]]){
                 // Recheche de la premiere occurence
             [textValue objectForKey:[[textValue allKeys] objectAtIndex:0]];
         }
             // assignation de la valeur text trouve
         ((UITextField*)[cell viewWithTag:10]).text = textValue;
-        
+            // :: nope :: [((UITextField*)[cell viewWithTag:10]) setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
         /* *********************************** */
             // reste a faire l ajout de telephone et de email supplmentaire
             // make acessory view
-        UIView *accessoryButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-        accessoryButtonView.backgroundColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:0.8];
+        /* UIView *accessoryButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+        accessoryButtonView.backgroundColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:0.8]; */
         /*            if([identifiersDef count]>3)
          cell.accessoryView = accessoryButtonView;*/
         
-    }else{
+    }else if(identifiersDef != nil && [ identifiersDef length]>1){
             // ::     UITableViewCell *cell = (UITableViewCell *)[table dequeueReusableCellWithIdentifier:kCellIdentifier];
-        
+            // TODO :: Custom cell, add, mail, phone
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
-        cell.backgroundColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:0.8];
+        cell.backgroundColor = [UIColor colorWithRed:1.0 green:0.8 blue:1.0 alpha:0.8];
+    }else{
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
+        cell.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.8 alpha:0.8];
     }
     /* ****************************
      
@@ -238,6 +244,13 @@
         // appel du appdelegate pour stockage des modifications
     id viewDelegate = self.delegate;
     long index =  ((SecondViewController*)viewDelegate).selectedRow;
+    /* ********
+        if( [validatedChanges somethingdifferent:  self.DetailRecords] ){
+        [_AppDelegate AppDelegateDatabaseCommitObjectAtIndex:index  :validatedChanges];
+    }else if(index <0){
+            // :: Alert
+    } 
+     ******** */
     [_AppDelegate AppDelegateDatabaseCommitObjectAtIndex:index  :validatedChanges];
     
     [self dismissViewControllerAnimated:YES completion:^{
@@ -260,3 +273,4 @@
         // Dispose of any resources that can be recreated.
 }
 @end
+

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7446D3E11E48E0B800B5395F /* DetailViewSwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7446D3E01E48E0B800B5395F /* DetailViewSwipeView.m */; };
+		7446D3E61E49EB0800B5395F /* NSException+NSException_Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 7446D3E51E49EB0800B5395F /* NSException+NSException_Extention.m */; };
+		7446D3E91E4A027800B5395F /* CGLayer_additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7446D3E81E4A027800B5395F /* CGLayer_additions.m */; };
 		7447FC431E3D3BB70067DBFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC421E3D3BB70067DBFC /* main.m */; };
 		7447FC461E3D3BB70067DBFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC451E3D3BB70067DBFC /* AppDelegate.m */; };
 		7447FC4C1E3D3BB70067DBFC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC4B1E3D3BB70067DBFC /* SecondViewController.m */; };
@@ -44,6 +46,9 @@
 /* Begin PBXFileReference section */
 		7446D3E01E48E0B800B5395F /* DetailViewSwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewSwipeView.m; sourceTree = "<group>"; };
 		7446D3E21E48E0FD00B5395F /* DetailViewSwipeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewSwipeView.h; sourceTree = "<group>"; };
+		7446D3E41E49EB0800B5395F /* NSException+NSException_Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSException+NSException_Extention.h"; sourceTree = "<group>"; };
+		7446D3E51E49EB0800B5395F /* NSException+NSException_Extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSException+NSException_Extention.m"; sourceTree = "<group>"; };
+		7446D3E81E4A027800B5395F /* CGLayer_additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGLayer_additions.m; sourceTree = "<group>"; };
 		7447FC3E1E3D3BB70067DBFC /* 2801_app_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2801_app_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7447FC421E3D3BB70067DBFC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7447FC441E3D3BB70067DBFC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -102,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7446D3E71E4A024E00B5395F /* additions */ = {
+			isa = PBXGroup;
+			children = (
+				7446D3E81E4A027800B5395F /* CGLayer_additions.m */,
+			);
+			name = additions;
+			sourceTree = "<group>";
+		};
 		7447FC351E3D3BB70067DBFC = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +138,7 @@
 		7447FC401E3D3BB70067DBFC /* 2801_app_ios */ = {
 			isa = PBXGroup;
 			children = (
+				7446D3E71E4A024E00B5395F /* additions */,
 				7498F0641E4377180045013E /* ressources */,
 				7498F0181E3FAD010045013E /* objc_extentions */,
 				7498F0141E3FACF10045013E /* Classes */,
@@ -192,6 +206,8 @@
 				7498F01A1E3FAD010045013E /* NSData_NSDataExtentions.m */,
 				7498F0671E43B0620045013E /* UIAlertController+UIAlert_extension.h */,
 				7498F0681E43B0620045013E /* UIAlertController+UIAlert_extension.m */,
+				7446D3E41E49EB0800B5395F /* NSException+NSException_Extention.h */,
+				7446D3E51E49EB0800B5395F /* NSException+NSException_Extention.m */,
 			);
 			path = objc_extentions;
 			sourceTree = "<group>";
@@ -358,7 +374,9 @@
 				7498F0691E43B0620045013E /* UIAlertController+UIAlert_extension.m in Sources */,
 				74FDCC5D1E3E385000645FBA /* XMLDictionary.m in Sources */,
 				7498F0171E3FACF10045013E /* DatabaseDelegate.m in Sources */,
+				7446D3E91E4A027800B5395F /* CGLayer_additions.m in Sources */,
 				7498F0211E4002D50045013E /* DetailController.m in Sources */,
+				7446D3E61E49EB0800B5395F /* NSException+NSException_Extention.m in Sources */,
 				7498F01B1E3FAD010045013E /* NSData_NSDataExtentions.m in Sources */,
 				7447FC4C1E3D3BB70067DBFC /* SecondViewController.m in Sources */,
 				7447FC461E3D3BB70067DBFC /* AppDelegate.m in Sources */,

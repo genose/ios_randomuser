@@ -14,16 +14,15 @@
 @property (strong, nonatomic) id AppDelegate;
 @property (nonatomic, strong) UITableViewController *DetailRecords_tableView;
 @property (nonatomic, strong) NSMutableDictionary *DetailRecords;
-@property (nonatomic, strong) NSDictionary *cellIdentifiers;
+@property (nonatomic, strong) NSArray *cellIdentifiers;
 
 @property (nonatomic, assign) id<UIViewDetail_protocol> delegate;
 
 @property (strong, nonatomic) IBOutlet UITableView *tabelView;
 
+
 - (IBAction)returnToChoices ;
 - (IBAction)validateChanges ;
-
-- (IBAction)addDetail:(id)detailRef ;
 
 @end
 
