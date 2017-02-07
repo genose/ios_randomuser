@@ -32,10 +32,10 @@
     // *****************************************
 #define URL_Database_distant_init @"https://randomuser.me/api/?results=50&format=xml"
 
-  // ::
-#define URL_Database_local_prefix @"/Volumes/ramfstmp"
+  // :: #define URL_Database_local_prefix @"/Volumes/ramfstmp"
 
-// :: #define URL_Database_local_prefix [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @""]
+// ::
+#define URL_Database_local_prefix [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @""]
 
 #define URL_Database_local @"appstorage.xml"
     // *****************************************

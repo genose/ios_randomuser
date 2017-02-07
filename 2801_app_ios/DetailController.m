@@ -32,8 +32,13 @@
     self.cellIdentifiers = [NSArray arrayWithObjects:
                             [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailCellLastName",@"name", @"last" ,nil],@"DetailCellLastName" ,nil],
                             [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailCellFirstName",@"name", @"first" ,nil],@"DetailCellFirstName" ,nil],
+                            
                              [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailCellPhone",@"-", @"phone" ,nil],@"DetailCellPhone" ,nil],
+                            [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailSection",@"-", @"-" ,nil],@"DetailSection" ,nil],
+                            
                             [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailCellMail",@"-", @"email" ,nil],@"DetailCellMail" ,nil],
+                            
+                             [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailSection",@"-", @"-" ,nil],@"DetailSection" ,nil],
                            @"ignore",@"noproperty",
                             @"ignore",@"noproperty",
                             [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"DetailCellButton",@"-", @"-", [NSArray arrayWithObjects:@"add",@"delete", nil] ,nil], @"DetailCellButton" ,nil]

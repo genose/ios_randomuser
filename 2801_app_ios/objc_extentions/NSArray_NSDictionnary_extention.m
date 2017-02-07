@@ -42,7 +42,12 @@ id staticcopyArray = nil;
             }
         }else if ([_element isKindOfClass:[NSString class]]){
             if(   [_element length]>1  ){
-                [foundElement addObject: _element];
+                if([_element isEqualToString:@"ignore"]){
+                    _element = [walkElement  nextObject]; // skip
+                }
+                    [foundElement addObject: _element];
+                 
+                
                 
             }
         }
