@@ -23,7 +23,8 @@
 		7498F0211E4002D50045013E /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F0201E4002D50045013E /* DetailController.m */; };
 		7498F0661E4377180045013E /* Engie_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7498F0651E4377180045013E /* Engie_Logo.png */; };
 		7498F0691E43B0620045013E /* UIAlertController+UIAlert_extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F0681E43B0620045013E /* UIAlertController+UIAlert_extension.m */; };
-		74FDCC5D1E3E385000645FBA /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FDCC5C1E3E385000645FBA /* XMLDictionary.m */; };
+		74F58C4E1E5B88C00016D2D7 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F58C4D1E5B88C00016D2D7 /* XMLDictionary.m */; };
+		74F58C521E5B8EC10016D2D7 /* UIColor+UIColorExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F58C511E5B8EC10016D2D7 /* UIColor+UIColorExtention.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,9 +77,12 @@
 		7498F0651E4377180045013E /* Engie_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Engie_Logo.png; sourceTree = "<group>"; };
 		7498F0671E43B0620045013E /* UIAlertController+UIAlert_extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+UIAlert_extension.h"; sourceTree = "<group>"; };
 		7498F0681E43B0620045013E /* UIAlertController+UIAlert_extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+UIAlert_extension.m"; sourceTree = "<group>"; };
+		74F58C4C1E5B88C00016D2D7 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		74F58C4D1E5B88C00016D2D7 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
+		74F58C4F1E5B8D9D0016D2D7 /* prefixUIDesign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefixUIDesign.h; sourceTree = "<group>"; };
+		74F58C501E5B8EC10016D2D7 /* UIColor+UIColorExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColorExtention.h"; sourceTree = "<group>"; };
+		74F58C511E5B8EC10016D2D7 /* UIColor+UIColorExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColorExtention.m"; sourceTree = "<group>"; };
 		74F5D7AE1E47D90C00376D59 /* UIViewDetail_protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewDetail_protocol.h; path = ../objc_protocols/UIViewDetail_protocol.h; sourceTree = "<group>"; };
-		74FDCC5B1E3E385000645FBA /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
-		74FDCC5C1E3E385000645FBA /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		74FDCC5E1E3E397D00645FBA /* prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefix.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				74FDCC5E1E3E397D00645FBA /* prefix.h */,
+				74F58C4F1E5B8D9D0016D2D7 /* prefixUIDesign.h */,
 				7446D3EB1E4A15D100B5395F /* controllers */,
 				7446D3E71E4A024E00B5395F /* additions */,
 				7446D3EA1E4A158D00B5395F /* objc_protocols */,
@@ -225,6 +230,8 @@
 				7498F0681E43B0620045013E /* UIAlertController+UIAlert_extension.m */,
 				7446D3E41E49EB0800B5395F /* NSException+NSException_Extention.h */,
 				7446D3E51E49EB0800B5395F /* NSException+NSException_Extention.m */,
+				74F58C501E5B8EC10016D2D7 /* UIColor+UIColorExtention.h */,
+				74F58C511E5B8EC10016D2D7 /* UIColor+UIColorExtention.m */,
 			);
 			path = objc_extentions;
 			sourceTree = "<group>";
@@ -240,20 +247,11 @@
 		74FDCC591E3E322300645FBA /* XML+HTTP */ = {
 			isa = PBXGroup;
 			children = (
-				74FDCC5A1E3E385000645FBA /* XMLDictionary */,
+				74F58C4C1E5B88C00016D2D7 /* XMLDictionary.h */,
+				74F58C4D1E5B88C00016D2D7 /* XMLDictionary.m */,
 			);
 			name = "XML+HTTP";
 			sourceTree = "<group>";
-		};
-		74FDCC5A1E3E385000645FBA /* XMLDictionary */ = {
-			isa = PBXGroup;
-			children = (
-				74FDCC5B1E3E385000645FBA /* XMLDictionary.h */,
-				74FDCC5C1E3E385000645FBA /* XMLDictionary.m */,
-			);
-			name = XMLDictionary;
-			path = libraries/XMLDictionary/XMLDictionary;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -265,6 +263,7 @@
 				7447FC3A1E3D3BB70067DBFC /* Sources */,
 				7447FC3B1E3D3BB70067DBFC /* Frameworks */,
 				7447FC3C1E3D3BB70067DBFC /* Resources */,
+				74F58C4B1E5AD7090016D2D7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -383,17 +382,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		74F58C4B1E5AD7090016D2D7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7447FC3A1E3D3BB70067DBFC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7498F0691E43B0620045013E /* UIAlertController+UIAlert_extension.m in Sources */,
-				74FDCC5D1E3E385000645FBA /* XMLDictionary.m in Sources */,
 				7498F0171E3FACF10045013E /* DatabaseDelegate.m in Sources */,
 				7446D3E91E4A027800B5395F /* CGLayer_additions.m in Sources */,
 				7498F0211E4002D50045013E /* DetailController.m in Sources */,
 				7446D3E61E49EB0800B5395F /* NSException+NSException_Extention.m in Sources */,
+				74F58C521E5B8EC10016D2D7 /* UIColor+UIColorExtention.m in Sources */,
+				74F58C4E1E5B88C00016D2D7 /* XMLDictionary.m in Sources */,
 				7498F01B1E3FAD010045013E /* NSData_NSDataExtentions.m in Sources */,
 				7447FC4C1E3D3BB70067DBFC /* SecondViewController.m in Sources */,
 				7447FC461E3D3BB70067DBFC /* AppDelegate.m in Sources */,
