@@ -53,7 +53,4 @@
     [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
     return hexComponent / 255.0;
 }
-    return [UIColor blackColor];
-
-}
 @end

@@ -18,6 +18,8 @@
 
 #import "objc_protocols/UIViewDetail_protocol.h"
 
+#import "NSJSONSerialization+NSJSONSerialization_extention.h"
+
 
 
 #import "AppDelegate.h"

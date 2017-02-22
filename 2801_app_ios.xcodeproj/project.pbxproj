@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		743C834D1E5D1BA600054308 /* NSObject+NSObject_isKindOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 743C834C1E5D1BA600054308 /* NSObject+NSObject_isKindOf.m */; };
 		7446D3E11E48E0B800B5395F /* DetailViewSwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7446D3E01E48E0B800B5395F /* DetailViewSwipeView.m */; };
 		7446D3E61E49EB0800B5395F /* NSException+NSException_Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 7446D3E51E49EB0800B5395F /* NSException+NSException_Extention.m */; };
 		7446D3E91E4A027800B5395F /* CGLayer_additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7446D3E81E4A027800B5395F /* CGLayer_additions.m */; };
@@ -17,6 +18,7 @@
 		7447FC541E3D3BB70067DBFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7447FC521E3D3BB70067DBFC /* LaunchScreen.storyboard */; };
 		7447FC5F1E3D3BB70067DBFC /* _801_app_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC5E1E3D3BB70067DBFC /* _801_app_iosTests.m */; };
 		7447FC6A1E3D3BB70067DBFC /* _801_app_iosUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7447FC691E3D3BB70067DBFC /* _801_app_iosUITests.m */; };
+		745C01CF1E5D0999009D0C44 /* NSJSONSerialization+NSJSONSerialization_extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 745C01CE1E5D0999009D0C44 /* NSJSONSerialization+NSJSONSerialization_extention.m */; };
 		7498F0171E3FACF10045013E /* DatabaseDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F0161E3FACF10045013E /* DatabaseDelegate.m */; };
 		7498F01B1E3FAD010045013E /* NSData_NSDataExtentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F01A1E3FAD010045013E /* NSData_NSDataExtentions.m */; };
 		7498F01E1E3FBEA20045013E /* NSArray_NSDictionnary_extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 7498F01C1E3FBEA20045013E /* NSArray_NSDictionnary_extention.m */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		743C834B1E5D1BA600054308 /* NSObject+NSObject_isKindOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSObject_isKindOf.h"; sourceTree = "<group>"; };
+		743C834C1E5D1BA600054308 /* NSObject+NSObject_isKindOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSObject_isKindOf.m"; sourceTree = "<group>"; };
 		7446D3E01E48E0B800B5395F /* DetailViewSwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewSwipeView.m; sourceTree = "<group>"; };
 		7446D3E21E48E0FD00B5395F /* DetailViewSwipeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewSwipeView.h; sourceTree = "<group>"; };
 		7446D3E41E49EB0800B5395F /* NSException+NSException_Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSException+NSException_Extention.h"; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 		7447FC651E3D3BB70067DBFC /* 2801_app_iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 2801_app_iosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7447FC691E3D3BB70067DBFC /* _801_app_iosUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _801_app_iosUITests.m; sourceTree = "<group>"; };
 		7447FC6B1E3D3BB70067DBFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		745C01CD1E5D0999009D0C44 /* NSJSONSerialization+NSJSONSerialization_extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+NSJSONSerialization_extention.h"; sourceTree = "<group>"; };
+		745C01CE1E5D0999009D0C44 /* NSJSONSerialization+NSJSONSerialization_extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+NSJSONSerialization_extention.m"; sourceTree = "<group>"; };
 		7498F0151E3FACF10045013E /* DatabaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseDelegate.h; sourceTree = "<group>"; };
 		7498F0161E3FACF10045013E /* DatabaseDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseDelegate.m; sourceTree = "<group>"; };
 		7498F0191E3FAD010045013E /* NSData_NSDataExtentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSData_NSDataExtentions.h; sourceTree = "<group>"; };
@@ -232,6 +238,10 @@
 				7446D3E51E49EB0800B5395F /* NSException+NSException_Extention.m */,
 				74F58C501E5B8EC10016D2D7 /* UIColor+UIColorExtention.h */,
 				74F58C511E5B8EC10016D2D7 /* UIColor+UIColorExtention.m */,
+				745C01CD1E5D0999009D0C44 /* NSJSONSerialization+NSJSONSerialization_extention.h */,
+				745C01CE1E5D0999009D0C44 /* NSJSONSerialization+NSJSONSerialization_extention.m */,
+				743C834B1E5D1BA600054308 /* NSObject+NSObject_isKindOf.h */,
+				743C834C1E5D1BA600054308 /* NSObject+NSObject_isKindOf.m */,
 			);
 			path = objc_extentions;
 			sourceTree = "<group>";
@@ -414,7 +424,9 @@
 				7447FC4C1E3D3BB70067DBFC /* SecondViewController.m in Sources */,
 				7447FC461E3D3BB70067DBFC /* AppDelegate.m in Sources */,
 				7446D3E11E48E0B800B5395F /* DetailViewSwipeView.m in Sources */,
+				743C834D1E5D1BA600054308 /* NSObject+NSObject_isKindOf.m in Sources */,
 				7447FC431E3D3BB70067DBFC /* main.m in Sources */,
+				745C01CF1E5D0999009D0C44 /* NSJSONSerialization+NSJSONSerialization_extention.m in Sources */,
 				7498F01E1E3FBEA20045013E /* NSArray_NSDictionnary_extention.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
